@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 import { useForm } from "react-hook-form";
 import z from "zod";
 
@@ -16,8 +17,20 @@ export default function Login() {
   const {register, handleSubmit, formState: {errors}} = useForm({
     resolver: zodResolver(UserSchema)
   });
+  
   const onSubmit = (data:User)=>{
-    console.log(data);
+    axios.post(
+      'http://localhost:8080/users/login/',
+      {
+        email: data.email,
+        password: data.password
+      },
+    ).then((response)=>{
+      console.log(response.data['token']);
+      localStorage.setItem('token',response.data['token']);
+    }).catch((error)=>{
+      console.log(error);
+    })
   }
 
   return (
