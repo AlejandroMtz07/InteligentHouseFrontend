@@ -3,6 +3,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import z from "zod";
 import style from './Login.module.css';
+import { useNavigate } from "react-router-dom";
 
 //Definition of the user schema
 const UserSchema = z.object({
@@ -18,6 +19,7 @@ export default function Login() {
   const {register, handleSubmit, formState: {errors}} = useForm({
     resolver: zodResolver(UserSchema)
   });
+  const navigate = useNavigate();
   
   const onSubmit = (data:User)=>{
     axios.post(
@@ -27,8 +29,11 @@ export default function Login() {
         password: data.password
       },
     ).then((response)=>{
-      console.log(response.data['token']);
-      localStorage.setItem('token',response.data['token']);
+      console.log(response);
+      if(response.data.msg === 'Login success'){
+        localStorage.setItem('token',response.data['token']);
+        navigate('/register');
+      }
     }).catch((error)=>{
       console.log(error);
     })
@@ -36,12 +41,18 @@ export default function Login() {
 
   return (
     <div className={style.login_container}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input {...register('email', {required: true})}/><br/>
-        {errors.email && <p style={{color: "red"}}>{errors.email.message}</p>}
-        <input {...register('password',{required: true})}/><br/>
-        {errors.password && <p style={{color: "red"}}>{errors.password.message}</p>}
-        <button type="submit">
+      <form onSubmit={handleSubmit(onSubmit)} className={style.login_form}>
+        <div className={style.input_container}>
+          <label htmlFor="email">Email</label><br/>
+          <input {...register('email', {required: true})} className={style.login_input} id="email"/>
+          {errors.email && <p style={{color: "red"}}>{errors.email.message}</p>}
+        </div>
+        <div className={style.input_container}>
+          <label htmlFor="password">Password</label><br/>
+          <input {...register('password',{required: true})} className={style.login_input} id="password" type="password"/>
+          {errors.password && <p style={{color: "red"}}>{errors.password.message}</p>}
+        </div>
+        <button type="submit" className={style.login_button}>
           Login
         </button>
       </form>
