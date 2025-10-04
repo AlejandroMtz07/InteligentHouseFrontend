@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+.register_container {
+    @apply h-screen flex items-center justify-center p-3 bg-white
+}
+
+.register_form {
+    @apply p-8 bg-gray-100 shadow-2xl shadow-gray-500 rounded flex flex-col
+}
+
+.input_container {
+    @apply font-semibold font-sans p-3 flex flex-col items-center
+}
+
+.register_input {
+    @apply bg-gray-300 mb-2 p-2 rounded
+}
+
+.register_error {
+    @apply text-red-400 p-3
+}
+
+.register_button {
+    @apply bg-blue-700 p-2 rounded text-white ml-3 mr-3 mt-1
+}

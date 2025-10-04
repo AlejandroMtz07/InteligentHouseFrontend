@@ -29,7 +29,6 @@ export default function Login() {
         password: data.password
       },
     ).then((response)=>{
-      console.log(response);
       if(response.data.msg === 'Login success'){
         localStorage.setItem('token',response.data['token']);
         navigate('/home');
