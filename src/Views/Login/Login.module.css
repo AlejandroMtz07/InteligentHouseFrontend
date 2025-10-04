@@ -1,16 +1,19 @@
 @import "tailwindcss";
 .login_container{
-    @apply h-screen flex items-center justify-center p-3 bg-blue-950
+    @apply h-screen flex items-center justify-center p-3 bg-white
 }
 .login_form{
-    @apply p-8 bg-blue-400 rounded
+    @apply p-8 bg-gray-100 shadow-2xl shadow-gray-500 rounded flex flex-col
 }
-.input-container{
-    @apply p-4
+.input_container{
+    @apply font-semibold font-sans p-3 flex flex-col items-center
 }
 .login_input{
-    @apply bg-amber-200 mb-3 p-2 rounded
+    @apply bg-gray-300 mb-2 p-2 rounded
+}
+.login_error{
+    @apply text-red-400 p-3
 }
 .login_button{
-    @apply bg-green-800 p-2 rounded text-white
+    @apply bg-green-800 p-2 rounded text-white ml-3 mr-3 mt-1
 }
