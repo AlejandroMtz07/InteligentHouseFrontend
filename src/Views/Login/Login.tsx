@@ -38,6 +38,9 @@ export default function Login() {
       setError('password',{message: e.response?.data.msg})
     })
   }
+  const handleRegisterClick = ()=>{
+    navigate('/register');
+  }
 
   return (
     <div className={style.login_container}>
@@ -51,6 +54,9 @@ export default function Login() {
           <label htmlFor="password">Password</label>
           <input {...register('password',{required: true})} className={style.login_input} id="password" type="password"/>
           {errors.password && <p className={style.login_error}>{errors.password.message}</p>}
+        </div>
+        <div className={style.register_link}>
+          <a onClick={handleRegisterClick}>Dont have an account yet?</a>
         </div>
         <button type="submit" className={style.login_button}>
           Login

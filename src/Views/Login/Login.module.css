@@ -8,6 +8,9 @@
 .input_container{
     @apply font-semibold font-sans p-3 flex flex-col items-center
 }
+.register_link{
+    @apply font-semibold font-sans p-3 flex flex-col items-center text-blue-500 hover:cursor-pointer
+}
 .login_input{
     @apply bg-gray-300 mb-2 p-2 rounded
 }
