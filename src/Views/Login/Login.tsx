@@ -2,6 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import z from "zod";
+import style from './Login.module.css';
 
 //Definition of the user schema
 const UserSchema = z.object({
@@ -34,7 +35,7 @@ export default function Login() {
   }
 
   return (
-    <div>
+    <div className={style.login_container}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input {...register('email', {required: true})}/><br/>
         {errors.email && <p style={{color: "red"}}>{errors.email.message}</p>}
