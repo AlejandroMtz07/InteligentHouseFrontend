@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { useForm } from "react-hook-form";
 import z from "zod";
 import style from './Login.module.css';

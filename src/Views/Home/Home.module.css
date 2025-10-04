@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+.home {
+    @apply bg-white font-mono
+}
+
+.title {
+    @apply bg-gray-200 text-left p-10 text-2xl
+}

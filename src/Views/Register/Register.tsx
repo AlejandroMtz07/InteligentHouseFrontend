@@ -1,4 +1,4 @@
-import z, { email } from 'zod';
+import z from 'zod';
 import style from './Register.module.css';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -28,7 +28,7 @@ export const Register = () => {
       }
     ).then((response)=>{
       if(response.data.msg === "User registered"){
-        navigate('/home');
+        navigate('/login');
       }
     }).catch((error: any)=>{
       setError('email',{message: error.response?.data.msg},{shouldFocus: true});
