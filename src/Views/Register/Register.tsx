@@ -20,8 +20,11 @@ export const Register = () => {
   const navigate = useNavigate();
 
   const onsubmit = (data: User) => {
+
+    const direction = '192.168.0.93:5173';
+
     axios.post(
-      'http://localhost:8080/users/register/',
+      `http://${direction}/users/register/`,
       {
         email: data.email,
         password: data.password
