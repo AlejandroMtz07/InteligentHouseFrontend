@@ -13,7 +13,7 @@ export default function SideBar() {
     return (
         <aside className={style.sidebar}>
             <nav className={style.div_sidebar}>
-                <ul className=''>
+                <ul>
                     <li className={style.li_sidebar}>
                         <Link to={'/home/device'}>Devices<FiAirplay size={25} /></Link>
                     </li>
