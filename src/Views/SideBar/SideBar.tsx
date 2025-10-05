@@ -1,19 +1,20 @@
+import { Link } from 'react-router-dom'
 import style from './SideBar.module.css'
-import {FiAirplay, FiCamera} from 'react-icons/fi'
+import { FiAirplay, FiCamera } from 'react-icons/fi'
 
 export default function SideBar() {
     return (
         <aside className={style.sidebar}>
-            <div className={style.div_sidebar}>
+            <nav className={style.div_sidebar}>
                 <ul className=''>
                     <li className={style.li_sidebar}>
-                        <a href='#'>Devices<FiAirplay size={25}/></a>
+                        <Link to={'/home/device'}>Devices<FiAirplay size={25} /></Link>
                     </li>
                     <li className={style.li_sidebar}>
-                        <a href="#">Scan new device <FiCamera size={25}/></a>
+                        <Link to={'/home/device'}>Scan new device <FiCamera size={25} /></Link>
                     </li>
                 </ul>
-            </div>
+            </nav>
         </aside>
     )
 }

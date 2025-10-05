@@ -7,3 +7,9 @@
 .title {
     @apply bg-gray-200 text-left p-10 text-2xl
 }
+.content{
+    @apply flex flex-1
+}
+.main{
+    @apply flex-1 flex items-center justify-center p-10 bg-gray-100
+}
