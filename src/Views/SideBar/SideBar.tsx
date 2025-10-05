@@ -7,6 +7,7 @@ export default function SideBar() {
 
     const logout = ()=>{
         localStorage.removeItem('isLoged');
+        localStorage.removeItem('token');
     }
 
     return (
