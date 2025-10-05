@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 import style from './SideBar.module.css';
-import { FiAirplay, FiLogOut} from 'react-icons/fi';
-import {FaQrcode} from 'react-icons/fa';
+import { FiAirplay, FiLogOut } from 'react-icons/fi';
+import { FaQrcode } from 'react-icons/fa';
 
 export default function SideBar() {
 
-    const logout = ()=>{
+    const logout = () => {
         localStorage.removeItem('isLoged');
         localStorage.removeItem('token');
     }
