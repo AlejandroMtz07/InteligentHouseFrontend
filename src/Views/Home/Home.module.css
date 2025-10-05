@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 .home {
-    @apply bg-white font-mono
+    @apply bg-white font-mono flex flex-col min-h-screen
 }
 
 .title {

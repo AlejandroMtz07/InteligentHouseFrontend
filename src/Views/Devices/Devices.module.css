@@ -1,5 +1,5 @@
 @import "tailwindcss";
 
-.scanner_content{
+.devices {
     @apply ml-80 flex flex-col
 }
