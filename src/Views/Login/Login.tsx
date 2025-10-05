@@ -23,6 +23,7 @@ export default function Login() {
   
   const onSubmit = (data:User)=>{
     axios.post(
+      //If you want to use from the phone 192.168.0.93:8080 instead localhost
       'http://localhost:8080/users/login/',
       {
         email: data.email,
