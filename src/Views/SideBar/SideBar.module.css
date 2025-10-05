@@ -5,7 +5,7 @@
 }
 
 .div_sidebar {
-    @apply h-full  overflow-y-auto bg-gray-50 dark:bg-gray-800 text-white
+    @apply h-full overflow-y-auto bg-gray-50 dark:bg-gray-800 text-white
 }
 
 .ul_sidebar {
@@ -13,5 +13,7 @@
 }
 
 .li_sidebar{
-    @apply flex flex-col justify-evenly mb-5 p-9 hover:dark:bg-gray-500 transition duration-300
+    @apply flex flex-col justify-evenly mb-5 mt-5 p-10 hover:dark:bg-gray-500 transition duration-700 rounded
 }
+
+

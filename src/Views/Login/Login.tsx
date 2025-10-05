@@ -31,6 +31,7 @@ export default function Login() {
     ).then((response)=>{
       if(response.data.msg === 'Login success'){
         localStorage.setItem('token',response.data['token']);
+        localStorage.setItem('isLoged','true');
         navigate('/home');
       }
     }).catch((e:any)=>{
