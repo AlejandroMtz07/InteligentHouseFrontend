@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+.scanner_content{
+    @apply bg-gray-200 w-full ml-80
+}

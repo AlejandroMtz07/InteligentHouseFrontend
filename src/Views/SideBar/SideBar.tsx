@@ -11,7 +11,7 @@ export default function SideBar() {
                         <Link to={'/home/device'}>Devices<FiAirplay size={25} /></Link>
                     </li>
                     <li className={style.li_sidebar}>
-                        <Link to={'/home/device'}>Scan new device <FiCamera size={25} /></Link>
+                        <Link to={'/home/scanner'}>Scan new device <FiCamera size={25} /></Link>
                     </li>
                 </ul>
             </nav>
