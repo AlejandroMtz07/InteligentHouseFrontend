@@ -21,7 +21,7 @@ export const Register = () => {
 
   const onsubmit = (data: User) => {
 
-    const direction = '192.168.0.93:5173';
+    const direction = '192.168.0.93:8080';
 
     axios.post(
       `http://${direction}/users/register/`,
