@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
 .devices {
-    @apply ml-80 flex flex-col
+    @apply grid grid-cols-2 gap-10 p-10
+}
+.single_device{
+    @apply bg-blue-400 p-10 rounded shadow-2xl shadow-gray-500
 }
