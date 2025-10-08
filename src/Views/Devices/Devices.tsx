@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 type Device = {
   id: number,
+  status: number,
   lastlecture: Date,
   lastdata: string,
 }
@@ -28,7 +29,7 @@ export default function Devices() {
     <div className={style.devices}>
       {devices.map((item:Device,index)=>(
         <ul key={item.id} className={style.single_device}>
-          <li>{index}</li>
+          <li>{(item.status===0)?'Inactive':'Active'}</li>
           <li>{item.lastlecture.toString()}</li>
           <li>{item.lastdata}</li>
         </ul>
