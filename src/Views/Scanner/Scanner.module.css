@@ -3,3 +3,6 @@
 .scanner_content{
     @apply ml-80 flex flex-col
 }
+.scanner{
+    @apply p-10
+}

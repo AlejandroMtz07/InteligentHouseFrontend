@@ -23,7 +23,7 @@ export default function Scanner() {
     <ToastContainer/>
       <QrScanner
         onScan={handleScan}
-        styles={{ container: { height: 400, width: 400 } }}
+        styles={{ container: { height: 400, width: 400, borderRadius: "10px",}}}
         sound={false}
       />
     </>
