@@ -28,10 +28,11 @@ export default function Devices() {
   return (
     <div className={style.devices}>
       {devices.map((item:Device,index)=>(
-        <ul key={item.id} className={style.single_device}>
-          <li>{(item.status===0)?'Inactive':'Active'}</li>
-          <li>{item.lastlecture.toString()}</li>
-          <li>{item.lastdata}</li>
+        <ul key={index} className={style.single_device}>
+          <li>{item.id}</li>
+          <li>Status: {(item.status===0)?'Inactive':'Active'}</li>
+          <li>Last lecture: {item.lastlecture.toString()}</li>
+          <li>Last data: {item.lastdata}</li>
         </ul>
       ))}
     </div>
