@@ -1,8 +1,15 @@
 @import "tailwindcss";
 
 .devices {
-    @apply grid grid-cols-2 gap-10 p-10
+    @apply grid grid-cols-1 gap-10 p-10
 }
 .single_device{
-    @apply bg-blue-400 p-10 rounded shadow-2xl shadow-gray-500
+    @apply bg-gray-100 p-10 rounded-lg border border-gray-400 shadow-md hover:bg-gray-300 
+    grid grid-cols-2 gap-10
+}
+.date_device{
+    @apply p-5 text-center text-xl size-5 font-mono text-gray-700
+}
+.lecture_device{
+    @apply font-bold p-8 text-center
 }

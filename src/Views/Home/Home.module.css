@@ -11,5 +11,5 @@
     @apply flex flex-1
 }
 .main{
-    @apply flex-1 flex items-center justify-center p-10 bg-gray-100
+    @apply flex-1 flex items-center justify-center p-10 bg-white
 }
