@@ -39,10 +39,14 @@ export default function Devices() {
           timeZone: "America/Mazatlan", // ajusta según tu zona
           hour12: false,
         }).format(date);
+        const dateSection = formattedDate.split(',');
 
         return (
           <div key={index} className={style.single_device}>
-            <div className={style.date_device}>{formattedDate}</div>
+            <div className={style.date_section}>
+              <div className={style.time_section}>{dateSection[1]}</div>
+              {dateSection[0]}
+            </div>
             <div className={style.lecture_device}>{item.lastdata} C°</div>
           </div>
         )

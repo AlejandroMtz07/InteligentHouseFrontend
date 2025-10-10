@@ -1,9 +1,11 @@
 import { Scanner as QrScanner, type IDetectedBarcode } from '@yudiel/react-qr-scanner';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 
 export default function Scanner() {
 
+  const navigate = useNavigate();
   const handleScan = (detectedCodes: IDetectedBarcode[]) => {
     if (detectedCodes.length > 0) {
       axios.post(
@@ -12,6 +14,9 @@ export default function Scanner() {
         { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
       ).then((result) => {
         toast(result.data.msg);
+        setInterval(()=>{
+          navigate('/home/device');
+        },1500);
       }).catch((error) => {
         console.log(error);
       })

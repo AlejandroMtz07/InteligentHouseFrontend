@@ -7,9 +7,12 @@
     @apply bg-gray-100 p-10 rounded-lg border border-gray-400 shadow-md hover:bg-gray-300 
     grid grid-cols-2 gap-10
 }
-.date_device{
-    @apply p-5 text-center text-xl size-5 font-mono text-gray-700
+.date_section{
+    @apply p-5 text-center size-5 font-mono text-gray-700 text-2xl
+}
+.time_section{
+    @apply  ml-5 text-4xl
 }
 .lecture_device{
-    @apply font-bold p-8 text-center
+    @apply font-bold p-8 text-center text-2xl
 }
