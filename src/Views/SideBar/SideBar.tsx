@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import style from './SideBar.module.css';
-import { FiAirplay, FiLogOut } from 'react-icons/fi';
+import { FiAirplay, FiLogOut, FiEdit } from 'react-icons/fi';
 import { FaQrcode } from 'react-icons/fa';
 
 export default function SideBar() {
@@ -19,6 +19,9 @@ export default function SideBar() {
                     </li>
                     <li className={style.li_sidebar}>
                         <Link to={'/home/scanner'}>Scan new device <FaQrcode size={25} /></Link>
+                    </li>
+                    <li className={style.li_sidebar}>
+                        <Link to={"/home/device"}>Edit device information<FiEdit size={25}/></Link>
                     </li>
                     <li className={style.li_sidebar}>
                         <Link to={"/"} onClick={logout}>Logout <FiLogOut size={25}/></Link>

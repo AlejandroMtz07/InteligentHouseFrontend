@@ -1,7 +1,6 @@
 import axios from 'axios';
 import style from './Devices.module.css';
 import { useEffect, useState } from 'react';
-import { FiThermometer } from 'react-icons/fi';
 
 type Device = {
   id: number,
