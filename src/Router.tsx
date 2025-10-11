@@ -5,6 +5,7 @@ import ProtectedRoutes from "./Utils/ProtectedRoutes";
 import Home from "./Views/Home/Home";
 import Devices from "./Views/Devices/Devices";
 import Scanner from "./Views/Scanner/Scanner";
+import Edit from "./Views/EditDevice/Edit";
 
 
 export default function Router() {
@@ -17,6 +18,7 @@ export default function Router() {
                     <Route path='/home' element={<Home />}>
                         <Route path='device' element={<Devices />} />
                         <Route path='scanner' element={<Scanner />} />
+                        <Route path='edit/:id' element={<Edit />} />
                     </Route>
                 </Route>
             </Routes>

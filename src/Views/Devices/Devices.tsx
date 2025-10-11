@@ -1,6 +1,7 @@
 import axios from 'axios';
 import style from './Devices.module.css';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 type Device = {
   id: number,
@@ -47,6 +48,9 @@ export default function Devices() {
               {dateSection[0]}
             </div>
             <div className={style.lecture_device}>{item.lastdata} C°</div>
+            <Link to={{pathname: `/home/edit/${item.id}`}} className={style.update_button}>
+              <button>Edit</button>
+            </Link>
           </div>
         )
       })}
