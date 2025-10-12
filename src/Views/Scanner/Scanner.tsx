@@ -14,9 +14,9 @@ export default function Scanner() {
         { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
       ).then((result) => {
         toast(result.data.msg);
-        setInterval(()=>{
-          navigate('/home/device');
-        },1500);
+        setInterval(() => {
+          navigate(`/home/edit/${detectedCodes[0].rawValue.slice(-1)}`);
+        }, 1500);
       }).catch((error) => {
         console.log(error);
       })
@@ -25,10 +25,10 @@ export default function Scanner() {
 
   return (
     <>
-    <ToastContainer/>
+      <ToastContainer />
       <QrScanner
         onScan={handleScan}
-        styles={{ container: { height: 400, width: 400, borderRadius: "10px",}}}
+        styles={{ container: { height: 400, width: 400, borderRadius: "10px", } }}
         sound={false}
       />
     </>
