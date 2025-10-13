@@ -13,12 +13,14 @@ export default function Scanner() {
         {},
         { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
       ).then((result) => {
-        toast(result.data.msg);
-        setInterval(() => {
+        toast.success(result.data.msg);
+        setTimeout(() => {
           navigate(`/home/edit/${detectedCodes[0].rawValue.slice(-1)}`);
         }, 1500);
       }).catch((error) => {
-        console.log(error);
+        if(error.status == 403){
+          toast.warning('Login to see your devices');
+        }
       })
     }
   }

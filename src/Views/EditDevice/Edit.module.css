@@ -1,0 +1,20 @@
+@import 'tailwindcss';
+
+.edit_container{
+    @apply bg-white p-12 rounded shadow-gray-500 shadow-2xl w-150
+}
+.input_container{
+    @apply bg-white flex flex-col text-center p-5
+}
+.input_container label{
+    @apply mb-3
+}
+.input_container input{
+    @apply bg-gray-100 p-2 focus:bg-gray-300
+}
+.input_container button{
+    @apply bg-blue-500 p-2 rounded ml-30 mr-30 text-white hover:bg-blue-700
+}
+.input_container p{
+    @apply text-red-600 font-light
+}

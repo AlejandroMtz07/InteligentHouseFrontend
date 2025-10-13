@@ -7,6 +7,8 @@ import { ToastContainer } from 'react-toastify';
 
 type Device = {
   id: number,
+  devicename: string,
+  devicedescription: string,
   status: number,
   lastlecture: string,
   lastdata: string,
@@ -24,6 +26,7 @@ export default function Devices() {
         'http://localhost:8080/devices',
         { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
       ).then((result) => {
+        console.log(result);
         setDevices(result.data);
       }).catch((error) => {
         console.log(error);
@@ -55,10 +58,18 @@ export default function Devices() {
             return (
               <div key={index} className={style.single_device}>
                 <div className={style.date_section}>
-                  <div className={style.time_section}>{dateSection[1]}</div>
+                  <div className={style.time_section}>
+                    {dateSection[1]}
+                  </div>
                   {dateSection[0]}
                 </div>
-                <div className={style.lecture_device}>{item.lastdata} C°</div>
+                <div className={style.lecture_device}>
+                  <p>
+                    {item.devicename}<br/>
+                    {item.lastdata}C°
+                  </p>
+                  
+                </div>
                 <Link to={{ pathname: `/home/edit/${item.id}` }} className={style.update_button}>
                   <button>Edit</button>
                 </Link>

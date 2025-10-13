@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 .sidebar {
-    @apply fixed left-0 z-40 w-64 h-screen transition-transform
+    @apply left-0 z-40 w-64 transition-transform sticky
 }
 
 .div_sidebar {
@@ -13,7 +13,7 @@
 }
 
 .li_sidebar{
-    @apply flex flex-col justify-evenly mb-5 mt-5 p-10 hover:dark:bg-gray-500 transition duration-700 rounded
+    @apply flex flex-col flex-1 justify-evenly mb-5 mt-5 p-10 hover:dark:bg-gray-500 transition duration-700 rounded
 }
 
 
