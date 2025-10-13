@@ -18,7 +18,7 @@ type InformationDevice = z.infer<typeof newDeviceInformation>;
 export default function Edit() {
 
     const { id } = useParams();
-    const { register, handleSubmit, formState: { errors }, setError } = useForm({
+    const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: zodResolver(newDeviceInformation)
     });
     const navigate = useNavigate();

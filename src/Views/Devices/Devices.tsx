@@ -3,7 +3,6 @@ import style from './Devices.module.css';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Loader from '../Loader/Loader';
-import { ToastContainer } from 'react-toastify';
 
 type Device = {
   id: number,
@@ -39,7 +38,6 @@ export default function Devices() {
 
   return (
     <div className={style.devices}>
-      <ToastContainer />
       {
         (areDevices) ?
           devices.map((item: Device, index) => {
