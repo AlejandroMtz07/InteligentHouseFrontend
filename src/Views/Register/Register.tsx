@@ -31,7 +31,7 @@ export const Register = () => {
       }
     ).then((response)=>{
       if(response.data.msg === "User registered"){
-        navigate('/login');
+        navigate('/');
       }
     }).catch((error: any)=>{
       setError('email',{message: error.response?.data.msg},{shouldFocus: true});

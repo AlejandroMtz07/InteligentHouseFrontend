@@ -19,3 +19,9 @@
 .update_button{
     @apply bg-blue-900 p-1 rounded text-center text-white hover:bg-blue-800
 }
+.any_devices_message{
+    @apply p-8 rounded text-center
+}
+.any_devices_message a{
+    @apply text-blue-600 font-semibold flex flex-row gap-4 mt-1 justify-center
+}
