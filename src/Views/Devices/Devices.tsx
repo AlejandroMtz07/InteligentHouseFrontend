@@ -1,9 +1,10 @@
 import axios from 'axios';
-import style from './Devices.module.css';
+import styles from './Devices.module.css';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Loader from '../Loader/Loader';
+import Loader from '../Loader/Loader'; // Asumo que tienes este componente
 import { FaQrcode } from 'react-icons/fa';
+import { FiCpu } from 'react-icons/fi';
 
 type Device = {
   id: number,
@@ -15,77 +16,90 @@ type Device = {
 }
 
 export default function Devices() {
-
-  const [devices, setDevices] = useState([]);
-  const [areDevices, setAreDevices] = useState(false);
+  const [devices, setDevices] = useState<Device[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      await new Promise((r) => setTimeout(r, 1500));
-      axios.get(
-        'http://localhost:8080/devices',
-        { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
-      ).then((result) => {
-        console.log(result);
-        setDevices(result.data);
-      }).catch((error) => {
-        console.log(error);
-      }).finally(() => {
-        setAreDevices(true);
-      })
-    }
-    fetchData();
-  }, [])
+    axios.get(
+      'http://localhost:8080/devices',
+      { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
+    ).then((result) => {
+      setDevices(result.data);
+    }).catch((error) => {
+      console.log(error);
+    }).finally(() => {
+      setIsLoading(false);
+    });
+  }, []);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
-    <div className={style.devices}>
-      {
-        (areDevices) ?
-          (devices.length > 0 ?
-            devices.map((item: Device, index) => {
-              const date = new Date(item.lastlecture);
-              const formattedDate = new Intl.DateTimeFormat("es-MX", {
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric",
-                hour: "2-digit",
-                minute: "2-digit",
-                timeZone: "America/Mazatlan", // ajusta según tu zona
-                hour12: false,
-              }).format(date);
-              const dateSection = formattedDate.split(',');
-              return (
-                <div key={index} className={style.single_device}>
-                  <div className={style.date_section}>
-                    <div className={style.time_section}>
-                      {dateSection[1]}
-                    </div>
-                    {dateSection[0]}
-                  </div>
-                  <div className={style.lecture_device}>
-                    <p>
-                      {item.devicename}<br />
-                      {item.lastdata}C°
-                    </p>
+    <div>
+      <header className={styles.pageHeader}>
+        <h1 className={styles.title}>Mis Dispositivos</h1>
+        <p className={styles.subtitle}>Gestiona y monitorea tus dispositivos conectados.</p>
+      </header>
 
+      {devices.length > 0 ? (
+        <div className={styles.devicesGrid}>
+          {devices.map((item: Device) => {
+            const statusText = item.status === 1 ? 'Active' : 'Inactive';
+            const formattedDate = new Date(item.lastlecture).toLocaleString('es-MX', {
+              day: '2-digit', month: '2-digit', year: 'numeric',
+              hour: '2-digit', minute: '2-digit', hour12: false,
+            });
+
+            return (
+              <div key={item.id} className={styles.deviceCard}>
+                <div className={styles.deviceTitle}>
+                  <div className={styles.cardHeader}>
+                    <h2 className={styles.deviceName}>{item.devicename}</h2>
+                    <h5>{item.devicedescription}</h5>
                   </div>
-                  <Link to={{ pathname: `/home/edit/${item.id}` }} className={style.update_button}>
-                    <button>Edit</button>
+
+                  <div className={styles.status_container}>
+                    <div data-status={statusText} className={styles.statusIndicator} title={statusText}></div>
+                  </div>
+                </div>
+
+                <hr className={styles.separador}/>
+
+                <div className={styles.cardBody}>
+                  <div className={styles.infoRow}>
+                    <span className={styles.infoLabel}>Estado:</span>
+                    <span className={styles.infoValue}>{statusText}</span>
+                  </div>
+                  <div className={styles.infoRow}>
+                    <span className={styles.infoLabel}>Última lectura:</span>
+                    <span className={styles.infoValue}>{formattedDate}</span>
+                  </div>
+                  <div className={styles.infoRow}>
+                    <span className={styles.infoLabel}>Último dato:</span>
+                    <span className={styles.infoValue}>{item.lastdata}°C</span>
+                  </div>
+                </div>
+
+                <div className={styles.cardFooter}>
+                  <Link to={`/home/edit/${item.id}`} className={styles.editButton}>
+                    Editar
                   </Link>
                 </div>
-              )
-            }) :
-            (
-              <p className={style.any_devices_message}>
-                There's any devices bonded <br />
-                <a href="/home/scanner">
-                  Register a new device <FaQrcode size={30}/>
-                </a>
-              </p>
-            )
-          ) :
-          <Loader />
-      }
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div className={styles.noDevicesMessage}>
+          <p>No tienes dispositivos vinculados todavía.</p>
+          <Link to="/home/scanner">
+            <FaQrcode />
+            Registrar un nuevo dispositivo
+          </Link>
+        </div>
+      )}
     </div>
-  )
+  );
 }

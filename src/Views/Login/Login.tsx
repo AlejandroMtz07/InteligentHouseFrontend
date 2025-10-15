@@ -27,7 +27,7 @@ export default function Login() {
 
     axios.post(
       //If you want to use from the phone 192.168.0.93:5173 instead localhost
-      `http://${direction}/users/login/`,
+      `http://localhost:8080/users/login/`,
       {
         email: data.email,
         password: data.password
