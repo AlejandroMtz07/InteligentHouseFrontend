@@ -2,77 +2,80 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom"
 import z from "zod";
-import style from './Edit.module.css';
+import styles from './Edit.module.css'; // Usamos styles en lugar de style
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
-//New information schema
 const newDeviceInformation = z.object({
-    devicename: z.string().min(4, 'Device name must be 3 characters long'),
-    devicedescription: z.string().min(5, 'Device description must be 5 characters long')
-})
+    devicename: z.string().min(4, 'El nombre debe tener al menos 4 caracteres'),
+    devicedescription: z.string().min(5, 'La descripción debe tener al menos 5 caracteres')
+});
 
 type InformationDevice = z.infer<typeof newDeviceInformation>;
 
-
 export default function Edit() {
-
     const { id } = useParams();
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit, formState: { errors } } = useForm<InformationDevice>({
         resolver: zodResolver(newDeviceInformation)
     });
     const navigate = useNavigate();
 
-    const direction = '192.168.0.93:8080'
     const onSubmit = (data: InformationDevice) => {
         axios.put(
-            `http://${direction}/devices/${id}`,
-            {
-                devicename: data.devicename,
-                devicedescription: data.devicedescription
-            },
+            `http://localhost:8080/devices/${id}`,
+            data, // Puedes pasar el objeto data directamente
             { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
         ).then((result) => {
-            console.log(result);
-            if (result.status == 200) {
-                toast.success('Device updated');
-                setTimeout(()=>{
+            if (result.status === 200) {
+                toast.success('Dispositivo actualizado con éxito');
+                setTimeout(() => {
                     navigate('/home/device');
-                },1500)
+                }, 1500);
             }
         }).catch((error) => {
-            if (error.status == 404) {
-                toast.warning('Device not found');
+            if (error.response && error.response.status === 404) {
+                toast.warning('Dispositivo no encontrado');
+            } else {
+                toast.error('Ocurrió un error inesperado');
             }
-            toast.error('Something happened');  
-        })
+        });
     }
 
     return (
         <div>
-            {(id == '0') ?
-                'Select a device in the Devices page to edit' :
-                (<div className={style.edit_container}>
-                    <ToastContainer />
+            <ToastContainer position="top-right" autoClose={3000} theme="colored" />
+
+            <header className={styles.header}>
+                <h1 className={styles.title}>Editar Dispositivo</h1>
+                <p className={styles.subtitle}>Modifica la información de tu dispositivo seleccionado.</p>
+            </header>
+
+            {id === '0' ? (
+                <div className={styles.promptMessage}>
+                    Selecciona un dispositivo en la página "Mis Dispositivos" para poder editarlo.
+                </div>
+            ) : (
+                <div className={styles.formCard}>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className={style.input_container}>
-                            <label htmlFor="devicename">New device name: </label>
-                            <input {...register('devicename', { required: true })} id="devicename" autoComplete="off" />
-                            {errors.devicename && <p>{errors.devicename.message}</p>}
+                        <div className={styles.inputGroup}>
+                            <label htmlFor="devicename" className={styles.label}>Nuevo nombre del dispositivo:</label>
+                            <input {...register('devicename')} id="devicename" className={styles.input} />
+                            {errors.devicename && <p className={styles.errorMessage}>{errors.devicename.message}</p>}
                         </div>
-                        <div className={style.input_container}>
-                            <label htmlFor="devicename">New device description: </label>
-                            <input {...register('devicedescription', { required: true })} id="devicedescription" autoComplete="off"/>
-                            {errors.devicedescription && <p>{errors.devicedescription.message}</p>}
+                        
+                        <div className={styles.inputGroup}>
+                            <label htmlFor="devicedescription" className={styles.label}>Nueva descripción del dispositivo:</label>
+                            <input {...register('devicedescription')} id="devicedescription" className={styles.input} />
+                            {errors.devicedescription && <p className={styles.errorMessage}>{errors.devicedescription.message}</p>}
                         </div>
-                        <div className={style.input_container}>
-                            <button type="submit">
-                                Update
-                            </button>
-                        </div>
+                        
+                        <button type="submit" className={styles.submitButton}>
+                            Actualizar Dispositivo
+                        </button>
                     </form>
-                </div>)
-            }
+                </div>
+            )}
         </div>
     )
 }

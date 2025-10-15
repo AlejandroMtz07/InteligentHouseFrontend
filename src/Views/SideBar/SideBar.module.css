@@ -1,19 +1,101 @@
-@import "tailwindcss";
-
+/* Paleta de colores basada en tu imagen */
 .sidebar {
-    @apply left-0 z-40 w-64 transition-transform sticky
+  --color-bg: #1F2937; /* El fondo azul oscuro principal */
+  --color-active-bg: #4A5568; /* El fondo gris-azulado del enlace activo */
+  --color-bg-hover: #374151; /* Un gris un poco más claro para el hover */
+  --color-border: #4A5568; /* El borde sutil */
+  --color-text: #D1D5DB; /* Texto/íconos en gris claro (no activos) */
+  --color-text-active: #FFFFFF; /* Texto/íconos en blanco (activos) */
 }
 
-.div_sidebar {
-    @apply h-full overflow-y-auto bg-gray-50 dark:bg-gray-800 text-white
+/* --- Contenedor Principal --- */
+.sidebar {
+  background-color: var(--color-bg);
+  width: 256px;
+  height: auto; 
+  position: relative;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
-.ul_sidebar {
-    @apply space-y-2 font-medium
+/* --- Logo --- */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* 12px */
+  height: 4rem; /* 64px */
+  padding: 0 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.logoText {
+  font-size: 1.125rem; /* 18px */
+  font-weight: 600;
+  color: var(--color-text-active);
 }
 
-.li_sidebar{
-    @apply flex flex-col flex-1 justify-evenly mb-5 mt-5 p-10 hover:dark:bg-gray-500 transition duration-700 rounded
+/* --- Navegación --- */
+.nav {
+  flex-grow: 1; /* Ocupa el espacio vertical */
+  padding: 1rem;
+}
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* 8px */
 }
 
+/* --- Enlaces --- */
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s, color 0.2s;
+}
+.navLink:hover {
+  background-color: var(--color-bg-hover);
+  color: var(--color-text-active);
+}
+/* Estilo del enlace activo */
+.active {
+  background-color: var(--color-active-bg);
+  color: var(--color-text-active);
+}
 
+/* --- Footer --- */
+.footer {
+  padding: 1rem;
+  border-top: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+@media (max-width: 768px) {
+  /* 1. Encogemos el sidebar */
+  .sidebar {
+    width: 80px; /* Ancho colapsado */
+  }
+
+  /* 2. Ocultamos el texto para mostrar solo los íconos */
+  .logoText,
+  .navLink span {
+    display: none; /* Oculta el texto */
+  }
+
+  /* 3. Centramos el logo y el footer */
+  .header, .footer {
+    padding: 0;
+    justify-content: center;
+  }
+  
+  .navLink {
+    justify-content: center;
+  }
+}

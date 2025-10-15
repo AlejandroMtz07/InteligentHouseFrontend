@@ -1,27 +1,160 @@
-@import "tailwindcss";
+/* --- Estilos Generales de la Página --- */
+.pageHeader {
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--color-border); /* Usamos la variable del sidebar */
+  margin-top: 15%;
+}
+.title {
+  font-size: 1.875rem; /* 30px */
+  font-weight: 700;
+  color: var(--color-text-active); /* Texto blanco */
+}
+.deviceTitle{
+  display : flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-direction: row;
+}
+.subtitle {
+  margin-top: 0.25rem;
+  color: var(--color-text); /* Texto gris claro */
+}
 
-.devices {
-    @apply grid grid-cols-2 gap-10
+/* --- Cuadrícula para las Tarjetas --- */
+.devicesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem; /* 24px */
 }
-.single_device{
-    @apply bg-gray-100 p-10 rounded-lg border border-gray-400 shadow-md hover:bg-gray-300 
-    grid grid-cols-2 gap-10
+
+/* --- Tarjeta de Dispositivo --- */
+.deviceCard {
+  background-color: var(--color-active-bg); /* Fondo gris-azulado */
+  border-radius: 0.75rem; /* 12px */
+  border: 1px solid var(--color-border);
+  box-shadow: 0 4px 6px -1px rgba(1, 29, 38, 0.962);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-bottom: 10%;
 }
-.date_section{
-    @apply p-5 text-center size-5 font-mono text-gray-700 text-2xl
+.deviceCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
-.time_section{
-    @apply  ml-5 text-4xl
+
+/* --- Contenido de la Tarjeta --- */
+.cardHeader {
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border);
+  width: 35%;
 }
-.lecture_device{
-    @apply font-bold p-5 text-center text-2xl
+.cardHeader h5{
+  font-family: monospace;
+  font-weight: 300;
 }
-.update_button{
-    @apply bg-blue-900 p-1 rounded text-center text-white hover:bg-blue-800
+.deviceName {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text-active);
+  margin-bottom: 5px;
 }
-.any_devices_message{
-    @apply p-8 rounded text-center
+
+.status_container{
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  width: 15%;
 }
-.any_devices_message a{
-    @apply text-blue-600 font-semibold flex flex-row gap-4 mt-1 justify-center
+.statusIndicator {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+}
+.statusIndicator[data-status='Active'] {
+  background-color: #22c55e; /* Verde */
+}
+.statusIndicator[data-status='Inactive'] {
+  background-color: #ef4444; /* Rojo */
+}
+
+
+.cardBody {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+}
+.infoLabel {
+  color: var(--color-text);
+}
+.infoValue {
+  font-weight: 500;
+  font-family: monospace;
+  color: var(--color-text-active);
+}
+
+.cardFooter {
+  padding: 1rem;
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-bg-hover);
+}
+.editButton {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #374151; /* Verde más oscuro */
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+.editButton:hover {
+  background-color: #20262f;
+}
+
+/* --- Mensaje de "No hay dispositivos" --- */
+.noDevicesMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem;
+  border: 2px dashed var(--color-border);
+  border-radius: 0.75rem;
+  color: var(--color-text);
+  background-color: #f9fafb;
+  border: 1px dashed #d1d5db;
+
+}
+.noDevicesMessage a {
+  margin-top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--color-primary-accent);
+  color: #2563eb;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+}
+.noDevicesMessage a:hover {
+  color: white;
+  background-color: #2563eb;
 }

@@ -1,37 +1,61 @@
-import { Link } from 'react-router-dom';
-import style from './SideBar.module.css';
-import { FiAirplay, FiLogOut, FiEdit } from 'react-icons/fi';
+import { NavLink } from 'react-router-dom'; // Importante: usamos NavLink
+import styles from './SideBar.module.css';
+import { FiAirplay, FiLogOut, FiEdit, FiCpu } from 'react-icons/fi';
 import { FaQrcode } from 'react-icons/fa';
 
 export default function SideBar() {
+  const logout = () => {
+    localStorage.removeItem('isLoged');
+    localStorage.removeItem('token');
+  }
 
+  return (
+    <aside className={styles.sidebar}>
+      
+      <div className={styles.header}>
+        <FiCpu size={28} style={{ color: '#3b82f6' }} />
+        <span className={styles.logoText}>Intelligent H.</span>
+      </div>
 
-    const logout = () => {
-        localStorage.removeItem('isLoged');
-        localStorage.removeItem('token');
-    }
+      <nav className={styles.nav}>
+        <ul className={styles.navList}>
+          <li>
+            <NavLink 
+              to="/home/device" 
+              className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}
+            >
+              <FiAirplay size={22} />
+              <span>Devices</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink 
+              to="/home/scanner"
+              className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}
+            >
+              <FaQrcode size={22} />
+              <span>Scan new device</span>
+            </NavLink>
+          </li>
+          {/* --- ¡Aquí está el nuevo enlace que añadió tu compañero! --- */}
+          <li>
+            <NavLink 
+              to="/home/edit/0"
+              className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}
+            >
+              <FiEdit size={22} />
+              <span>Edit device</span>
+            </NavLink>
+          </li>
+        </ul>
+      </nav>
 
-
-    return (
-        <aside className={style.sidebar}>
-            <nav className={style.div_sidebar}>
-                <ul>
-                    <li className={style.li_sidebar}>
-                        <Link to={'/home/device'}>Devices<FiAirplay size={25} /></Link>
-                    </li>
-                    <li className={style.li_sidebar}>
-                        <Link to={'/home/scanner'}>Scan new device <FaQrcode size={25} /></Link>
-                    </li>
-                    <li className={style.li_sidebar}>
-                        <Link to={"/home/edit/0"}>
-                            Edit device information<FiEdit size={25} />
-                        </Link>
-                    </li>
-                    <li className={style.li_sidebar}>
-                        <Link to={"/"} onClick={logout}>Logout <FiLogOut size={25} /></Link>
-                    </li>
-                </ul>
-            </nav>
-        </aside>
-    )
+      <div className={styles.footer}>
+        <NavLink to="/" onClick={logout} className={styles.navLink}>
+          <FiLogOut size={22} />
+          <span>Logout</span>
+        </NavLink>
+      </div>
+    </aside>
+  );
 }

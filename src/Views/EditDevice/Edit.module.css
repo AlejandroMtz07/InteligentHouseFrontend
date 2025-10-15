@@ -1,20 +1,87 @@
-@import 'tailwindcss';
+/* --- Encabezado de la Página --- */
+.header {
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+.title {
+  font-size: 1.875rem; /* 30px */
+  font-weight: 700;
+  color: #1f2937;
+}
+.subtitle {
+  margin-top: 0.25rem;
+  color: #6b7280;
+}
 
-.edit_container{
-    @apply bg-white p-12 rounded shadow-gray-500 shadow-2xl w-150
+/* --- Tarjeta del Formulario --- */
+.formCard {
+  background-color: white;
+  padding: 2rem; /* 32px */
+  border-radius: 0.75rem; /* 12px */
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 6px -1px rgba(1, 29, 38, 0.962);
+  max-width: 600px; /* Ancho máximo del formulario */
+  margin: 0 auto; /* Centra el formulario */
 }
-.input_container{
-    @apply bg-white flex flex-col text-center p-5
+
+/* --- Grupos de Inputs --- */
+.inputGroup {
+  margin-bottom: 1.5rem; /* 24px */
 }
-.input_container label{
-    @apply mb-3
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem; /* 8px */
+  font-weight: 500;
+  color: #374151;
 }
-.input_container input{
-    @apply bg-gray-100 p-2 focus:bg-gray-300
+
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem; /* 12px 16px */
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem; /* 8px */
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
-.input_container button{
-    @apply bg-blue-500 p-2 rounded ml-30 mr-30 text-white hover:bg-blue-700
+.input:focus {
+  outline: none;
+  border-color: #3b82f6; /* Acento azul al seleccionar */
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  background-color: #d1d5db;
 }
-.input_container p{
-    @apply text-red-600 font-light
+
+.errorMessage {
+  margin-top: 0.5rem;
+  color: #ef4444; /* Rojo para errores */
+  font-size: 0.875rem;
+}
+
+/* --- Botón de Enviar --- */
+.submitButton {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #374151; /* Verde primario */
+  color: rgb(255, 255, 255);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.submitButton:hover {
+  background-color: #20262f; /* Verde más oscuro */
+}
+
+/* --- Mensaje para seleccionar dispositivo --- */
+.promptMessage {
+  text-align: center;
+  padding: 2rem;
+  background-color: #f9fafb;
+  border: 1px dashed #d1d5db;
+  border-radius: 0.75rem;
+  color: #6b7280;
+  font-weight: 500;
 }

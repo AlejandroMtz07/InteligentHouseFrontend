@@ -1,8 +1,29 @@
-@import "tailwindcss";
-
-.scanner_content{
-    @apply ml-80 flex flex-col
+/* --- Encabezado de la Página --- */
+.header {
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #e5e7eb; /* Borde sutil */
 }
-.scanner{
-    @apply p-10
+.title {
+  font-size: 1.875rem; /* 30px */
+  font-weight: 700;
+  color: #1f2937;
+}
+.subtitle {
+  margin-top: 0.25rem;
+  color: #6b7280;
+}
+
+/* --- Contenedor de la Cámara --- */
+.scannerContainer {
+  background-color: white;
+  padding: 0.75rem; /* 12px de espacio interior */
+  border-radius: 0.75rem; /* 12px de borde redondeado */
+  border: 1px solid #e5e7eb; /* El contorno gris claro */
+  box-shadow: 0 4px 6px -1px rgba(1, 29, 38, 0.962); /* Sombra suave */
+  
+  /* --- ¡Aquí está el cambio! --- */
+  max-width: 350px; /* Tamaño reducido para que sea más compacto */
+  
+  width: 100%;
 }
