@@ -21,8 +21,6 @@ export const Register = () => {
 
   const onsubmit = (data: User) => {
 
-    const direction = 'localhost:3000';
-
     axios.post(
       `https://ih-backend.mnz.dom.my.id/users/register`,
       {
