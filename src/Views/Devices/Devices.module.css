@@ -24,7 +24,7 @@
 /* --- Cuadrícula para las Tarjetas --- */
 .devicesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, minmax(400px, 1fr));
   gap: 1.5rem; /* 24px */
 }
 
@@ -53,7 +53,7 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--color-border);
-  width: 35%;
+  width: 100%;
 }
 .cardHeader h5{
   font-family: monospace;
@@ -104,6 +104,10 @@
   font-weight: 500;
   font-family: monospace;
   color: var(--color-text-active);
+}
+.infoMeter{
+  display: flex;
+  margin-top: 1.5%;
 }
 
 .cardFooter {

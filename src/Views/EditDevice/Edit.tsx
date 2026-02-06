@@ -23,7 +23,7 @@ export default function Edit() {
 
     const onSubmit = (data: InformationDevice) => {
         axios.put(
-            `http://localhost:8080/devices/${id}`,
+            `https://ih-backend.mnz.dom.my.id/devices/${id}`,
             data, // Puedes pasar el objeto data directamente
             { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
         ).then((result) => {

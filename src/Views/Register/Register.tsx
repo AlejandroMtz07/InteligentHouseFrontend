@@ -21,10 +21,10 @@ export const Register = () => {
 
   const onsubmit = (data: User) => {
 
-    const direction = '192.168.0.93:8080';
+    const direction = 'localhost:3000';
 
     axios.post(
-      `http://${direction}/users/register/`,
+      `https://ih-backend.mnz.dom.my.id/users/register`,
       {
         email: data.email,
         password: data.password

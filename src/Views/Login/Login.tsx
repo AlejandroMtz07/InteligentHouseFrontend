@@ -23,11 +23,9 @@ export default function Login() {
   
   const onSubmit = (data:User)=>{
 
-    const direction = '192.168.0.93:8080';
-
     axios.post(
       //If you want to use from the phone 192.168.0.93:5173 instead localhost
-      `http://localhost:8080/users/login/`,
+      `https://ih-backend.mnz.dom.my.id/users/login`,
       {
         email: data.email,
         password: data.password

@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Loader from '../Loader/Loader'; // Asumo que tienes este componente
 import { FaQrcode } from 'react-icons/fa';
-import { FiCpu } from 'react-icons/fi';
 
 type Device = {
   id: number,
@@ -21,7 +20,7 @@ export default function Devices() {
 
   useEffect(() => {
     axios.get(
-      'http://localhost:8080/devices',
+      'https://ih-backend.mnz.dom.my.id/devices',
       { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
     ).then((result) => {
       setDevices(result.data);
@@ -78,7 +77,15 @@ export default function Devices() {
                   </div>
                   <div className={styles.infoRow}>
                     <span className={styles.infoLabel}>Último dato:</span>
-                    <span className={styles.infoValue}>{item.lastdata}°C</span>
+                    <meter 
+                      min={0} 
+                      max={100} 
+                      optimum={20} 
+                      value={String(item.lastdata)} 
+                      low={5} 
+                      high={40} 
+                      className={styles.infoMeter}
+                    />
                   </div>
                 </div>
 
